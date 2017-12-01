@@ -9,21 +9,20 @@ package statementProcessingLatching;
 
 import java.sql.*;
 
-public class QuestionOne extends QuestionRunner {
+public class QuestionOneStatement extends QuestionRunner {
 
-	public QuestionOne(Connection iconn) {
+	public QuestionOneStatement(Connection iconn) {
 
 		this.conn = iconn;
 	}
 
 	public void runCase() throws SQLException {
-
 		Statement stmtMother = conn.createStatement();
 		Statement stmtChild = conn.createStatement();
 		int noOfChildren = 0;
 
-		stmtMother.executeQuery("Alter system flush shared_pool");
-		stmtChild.executeQuery("Alter system flush shared_pool");
+		
+		
 		ResultSet rsMother = stmtMother.executeQuery("select id, hairColor from mother");
 
 		while (rsMother.next()) {
@@ -45,7 +44,7 @@ public class QuestionOne extends QuestionRunner {
 		stmtMother.close();
 		stmtChild.close();
 
-		System.out.println("number of children born in 2012 by blond mothers: " + noOfChildren);
+		System.out.println("Statement-----number of children born in 2012 by blond mothers: " + noOfChildren);
 
 	}
 }

@@ -4,9 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class QuestionTwo extends QuestionRunner{
+public class QuestionTwoStatement extends QuestionRunner{
 
-	public QuestionTwo(Connection iconn) {
+	public QuestionTwoStatement(Connection iconn) {
 
 		this.conn = iconn;
 	}
@@ -16,9 +16,7 @@ public class QuestionTwo extends QuestionRunner{
 		Statement stmtMother = conn.createStatement();
 		Statement stmtChild = conn.createStatement();
 		int noOfBlondMothers = 0;
-		
-		stmtMother.executeQuery("Alter system flush shared_pool");
-		stmtChild.executeQuery("Alter system flush shared_pool");		
+
 		
 		ResultSet rsChild = stmtChild.executeQuery("select motherId, yearBorn from child");
 
@@ -43,7 +41,7 @@ public class QuestionTwo extends QuestionRunner{
 		stmtMother.close();
 		stmtChild.close();
 
-		System.out.println("number of blond mothers by childeren born in 2012: " + noOfBlondMothers);
+		System.out.println("Statement-----number of blond mothers by childeren born in 2012: " + noOfBlondMothers);
 
 	}
 }

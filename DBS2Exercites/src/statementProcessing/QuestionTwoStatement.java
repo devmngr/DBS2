@@ -16,9 +16,7 @@ public class QuestionTwoStatement extends QuestionRunner{
 		Statement stmtMother = conn.createStatement();
 		Statement stmtChild = conn.createStatement();
 		int noOfBlondMothers = 0;
-		
-		stmtMother.executeQuery("Alter system flush shared_pool");
-		stmtChild.executeQuery("Alter system flush shared_pool");		
+
 		
 		ResultSet rsChild = stmtChild.executeQuery("select motherId, yearBorn from child");
 

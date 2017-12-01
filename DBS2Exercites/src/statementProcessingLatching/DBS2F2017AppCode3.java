@@ -33,10 +33,16 @@ public class DBS2F2017AppCode3 {
 
 			try {
 				
-				QuestionRunner q1 = new QuestionOne(conn);
+				QuestionRunner q1S = new QuestionOneStatement(conn);
+				QuestionRunner q1Ps = new QuestionOnePreparedStatement(conn);
 				
-				q1.execute();
+				QuestionRunner q2S = new QuestionTwoStatement(conn);
+				QuestionRunner q2Ps = new QuestionTwoPrepareStatement(conn);
 				
+				q1S.execute();
+				q1Ps.execute();
+				q2S.execute();
+				q2Ps.execute();
 				
 				
 

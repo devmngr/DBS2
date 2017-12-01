@@ -59,7 +59,6 @@ Scanner scanner = new Scanner(System.in);
 				System.out.println("error running case, see messages for details");
 				System.out.println(e.getMessage());
 				e.printStackTrace();
-
 			}
 
 		} catch (SQLException e) {

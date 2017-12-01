@@ -30,8 +30,19 @@ abstract class QuestionRunner {
 	final int executeCount = 6;
 	final int recursiveCalls = 7;
 
-	final int gets = 8;
-	final int immediateGets = 9;
+	final int latches = 8;
+	
+	
+	final int l1 = 9;
+	final int l2 = 10;
+	final int l3 = 11;
+	final int l4 = 12;
+	final int l5 = 13;
+	final int l6 = 14;
+	final int l7 = 15;
+	final int l8 = 16;
+	final int l9 = 17;
+	final int l10 = 18;
 
 	public void execute() throws SQLException {
 
@@ -81,7 +92,7 @@ abstract class QuestionRunner {
 		System.out.println(" ");
 
 		System.out.println(
-				"Total Latch cost: " + ((after[gets] + after[immediateGets]) - (before[gets] + before[immediateGets])));
+				"Total Latch cost: " + (after[latches] - before[latches]));
 
 	}
 
@@ -94,7 +105,7 @@ abstract class QuestionRunner {
 
 	private int[] getStats() throws SQLException {
 
-		int[] stats = new int[10];
+		int[] stats = new int[9];
 
 		stats[consistentGets] = getNamedStatistic("consistent gets");
 		stats[hardParses] = getNamedStatistic("parse count (hard)");
@@ -106,8 +117,8 @@ abstract class QuestionRunner {
 		stats[executeCount] = getNamedStatistic("execute count");
 		stats[recursiveCalls] = getNamedStatistic("recursive calls");
 
-		//stats[gets] = getLetchStatistic("gets");
-		stats[immediateGets] = getLetchStatistic("immediate gets");
+		stats[latches] = getTotalLatchStatistic();
+		
 		return stats;
 	}
 
@@ -128,12 +139,11 @@ abstract class QuestionRunner {
 
 	}
 
-	private int getLetchStatistic(String statName) throws SQLException {
+	private int getTotalLatchStatistic() throws SQLException {
 
 		int statValue = 0;
-		PreparedStatement stmt = conn.prepareStatement("select ? as value from v$latch");
+		PreparedStatement stmt = conn.prepareStatement("select sum(gets+immediate_gets) as value from v$latch");
 
-		stmt.setString(1, statName);
 		ResultSet rs = stmt.executeQuery();
 		rs.next();
 		statValue = rs.getInt("value");
@@ -141,6 +151,7 @@ abstract class QuestionRunner {
 		stmt.close();
 		return statValue;
 
+		
 	}
 
 }

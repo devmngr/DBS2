@@ -21,8 +21,7 @@ public class QuestionOneStatement extends QuestionRunner {
 		Statement stmtChild = conn.createStatement();
 		int noOfChildren = 0;
 
-		stmtMother.executeQuery("Alter system flush shared_pool");
-		stmtChild.executeQuery("Alter system flush shared_pool");
+		
 		
 		ResultSet rsMother = stmtMother.executeQuery("select id, hairColor from mother");
 

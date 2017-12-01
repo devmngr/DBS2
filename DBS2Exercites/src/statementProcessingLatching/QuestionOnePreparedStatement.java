@@ -1,4 +1,4 @@
-package statementProcessing;
+package statementProcessingLatching;
 
 /*
  * Implementation of question number one
